@@ -72,7 +72,7 @@ while (($#)); do
   esac
 done
 
-[[ -x "$HFD" ]] || { echo "hfd.sh is not executable: $HFD" >&2; exit 1; }
+[[ -f "$HFD" ]] || { echo "hfd.sh not found: $HFD" >&2; exit 1; }
 if ((${#SELECTED[@]} == 0)); then SELECTED=("${DATASETS[@]}"); fi
 mkdir -p "$DATASET_ROOT"
 
@@ -83,5 +83,5 @@ for repo in "${SELECTED[@]}"; do
   fi
   name="${repo##*/}"
   echo "==== Downloading ${repo} ===="
-  HF_ENDPOINT="$HF_ENDPOINT" "$HFD" "$repo" --dataset --tool "$TOOL" --local-dir "${DATASET_ROOT}/${name}"
+  HF_ENDPOINT="$HF_ENDPOINT" bash "$HFD" "$repo" --dataset --tool "$TOOL" --local-dir "${DATASET_ROOT}/${name}"
 done
