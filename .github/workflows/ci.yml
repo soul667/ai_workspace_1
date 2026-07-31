@@ -1,0 +1,17 @@
+name: Test ssh-media-transfer
+on:
+  push:
+    paths: ["tool/ssh-media-transfer/**"]
+  pull_request:
+    paths: ["tool/ssh-media-transfer/**"]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tool/ssh-media-transfer
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv run media-fetch --help
+      - run: uv build
