@@ -1,0 +1,23 @@
+name: Publish ssh-media-transfer package
+on:
+  push:
+    tags: ["ssh-media-transfer-v*"]
+  workflow_dispatch:
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    defaults:
+      run:
+        working-directory: tool/ssh-media-transfer
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv build
+      - name: Publish to GitHub Packages
+        run: uv publish --publish-url https://pypi.pkg.github.com/${{ github.repository_owner }}/
+        env:
+          UV_PUBLISH_USERNAME: ${{ github.repository_owner }}
+          UV_PUBLISH_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
