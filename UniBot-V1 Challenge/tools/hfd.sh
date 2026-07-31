@@ -14,7 +14,7 @@
 
 export HF_TOKEN="${HF_TOKEN:-}"
 export HF_USERNAME="${HF_USERNAME:-luobaigu}"
-export HF_ENDPOINT="${HF_ENDPOINT:-https://huggingface.co}"
+export HF_ENDPOINT="${HF_ENDPOINT:-https://hf-mirror.com}"
 export HF_HOME=/data/axgu/hf_cache
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; DIM='\033[2m'; BOLD='\033[1m'; NC='\033[0m'
 
